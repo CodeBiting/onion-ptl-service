@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  body
+    .bg
+      section.layout
+        .header
+          section.layout-fill-space
+            .grow1
+              div
+                a(title='CodeBiting' href='https://www.codebiting.com/')
+                  img(src='images/logocodebiting.png' alt='CodeBiting' style="width: 71px; height: 94px;")
+            .grow1
+              div(style='text-align:center')
+            .grow1
+              div(style='text-align:right')
+                a(title='Electrotec' href='https://www.electrotecsc.com/')
+                  img(src='images/logoelectrotec.png' alt='Electrotec' style="width: 240px; height: 93px;")
+
+        .main
+          block content
+        .footer
+          br
+          section.layout-fill-space
+            .grow1
+            .grow1
+            .grow1
+              p(style='text-align:right') © 2023 Code Biting S.L. All rights reserved.

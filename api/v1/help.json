@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "code": "NOT-FOUND-ERROR-001",
+    "message": "",
+    "detail": ""
+  },
+  {
+    "id": 2,
+    "code": "GENERIC-ERROR-002",
+    "message": "",
+    "detail": ""
+  },
+  {
+    "id": 3,
+    "code": "INVALID-REQUEST-ERROR-003",
+    "message": "",
+    "detail": ""
+  }
+]

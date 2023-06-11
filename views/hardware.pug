@@ -1,0 +1,143 @@
+extends layout
+
+block content
+  script(src='/javascripts/common.js' charset='utf-8')
+
+  h1= title
+
+  if message 
+    if message.type == 'ok'
+      .isa_success#message(onclick='hide()') #{message.text}
+    if message.type == 'error'
+      .isa_error#message(onclick='hide()') #{message.text}
+  .isa_warning#container(tabindex='0' style='display:none' onclick='hide()')
+
+  section.layout-fill-space
+    .grow1
+      div.rcorners
+        a(href='/') Home
+
+  section.layout-fill-space
+    .grow1
+      div.rcorners
+        form(action='/hardware' method='post' onsubmit='return formIsOk(this);')
+          //label(for='fDpiIp') Dpi Ip:
+          //input#fDpiIp(type='text' name='fDpiIp' value=dpiIp)
+          //label(for='fDpiPort') Dpi Port:
+          //input#fDpiPort(type='number' name='fDpiPort' value=dpiPort)
+
+          label(for='fDpi') Sent to DPI:
+          select#fDpi(name='fDpi')
+            if (configuredDPI)
+              each d in configuredDPI
+                // option(value=conv.id selected) #{conv.code}
+                option(value=d.id) #{d.ip} #{d.port}
+
+          div
+            section.layout-fill-space
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='Refresh')
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='Get Network Distribution from DPI')
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='Save Network Distribution to DB')
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='Load Network Distribution from DB')
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='Get Version')
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='Open Session')
+
+          br
+
+          div 
+            section.layout-fill-space
+              // Message to PTL:
+              // - displayData : 5 bytes
+              label(for='fPtlRelay') Relay:
+              input#fPtlRelay.shorttext(type='text' name='fPtlRelay' value='0,0,0' maxLength=5)
+              input#submitpalet(name="submit" type='submit' value='Relay')
+
+          hr
+
+          label(for='fPtl') Sent to PTL (ID, channel, type, location):
+          select#fPtl(name='fPtl')
+            if (configuredPTL)
+              each p in configuredPTL
+                // option(value=conv.id selected) #{conv.code}
+                option(value=p.id) #{p.id} - CH#{p.channel_id} - #{p.typeName} - #{p.location}
+
+          br
+
+          // Message to PTL:
+          // - displayData : 1 to 31 bytes
+          label(for='fPtlDisplay') Display:
+          input#fPtlDisplay.longtext(type='text' name='fPtlDisplay' value='' maxLength=31)
+          // - ledLight : 5 bytes with RGB separated with commas, ex: "0,1,0"
+          label(for='fPtlRGB') RGB:
+          input#fPtlRGB.shorttext(type='text' name='fPtlRGB' value='0,0,0' maxlength=5)
+          // - ledBlinkMode : "0" no blink, "1" blink every 0,25 seconds, "2" blink every 0,5 seconds, "4" blink every second
+          label(for='fPtlBlink') Blink Mode:
+          input#fPtlBlink.smallnumber(type='number' name='fPtlBlink' value=0 min=0 max=4)
+          // - arrows : "0" none, "1" left/up, "2" right/up, "3" left/down, "4" right/down, "5" left, "6" right, "7" up, "8" down
+          label(for='fPtlArrows') Arrows:
+          input#fPtlSound.smallnumber(type='number' name='fPtlArrows' value=0 min=0 max=8)
+          // - keySound : "0" deactivate, "1" activate
+          label(for='fPtlSound') Key Sound:
+          input#fPtlSound.smallnumber(type='number' name='fPtlSound' value=0 min=0 max=1)
+          // - makeBeep : "0" no beep, "1" single beep, "2" double beep (short-short), "4" double beep (short-long)
+          label(for='fPtlBeep') Beep:
+          input#fPtlBeep.bignumber(type='number' name='fPtlBeep' value=0 min=0 max=4)
+
+          div
+            section.layout-fill-space
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='PTL Display')
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='PTL Display Ack')
+            section.layout-fill-space
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='PTL Off')
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='PTL Off Ack')
+
+  section.layout-fill-space
+    .grow1
+      div.rcorners
+        p Last Messages Sent 
+        ol 
+          each m in messagesSent
+            if (m.type == 'display_ack')
+              li #{m.date.toISOString()} - #{m.type} - Message #{m.messageId} - Ack #{m.ackRecevied}
+            else 
+              li #{m.date.toISOString()} - #{m.type}
+    .grow1
+      div.rcorners
+        p Last Messages Received
+        ol 
+          each m in messagesReceived
+            li #{m.date.toISOString()} - #{m.type} - #{m.value}
+    .grow1
+      div.rcorners
+        p Last Alarms Received
+        if alarmsReceived
+          ol 
+            each m in alarmsReceived
+              li #{m.date.toISOString()} - #{m.type} - #{m.value}
+    .grow1
+      div.rcorners
+        if network && network.channels
+          p DPI Network Distribution #{network.dpi.id} - #{network.dpi.ip} : #{network.dpi.port}
+          ul 
+            each c in network.channels
+              li Channel #{c.channel} - Num. nodes #{c.numNodes}
+                ul 
+                  each n in c.nodes
+                    li #{n.nodeId} - #{n.statusDesc} (#{n.status}) - #{n.typeDesc} (#{n.type})
+    .grow1
+      div.rcorners
+        p Configured Network Distribution
+          if configuration
+            ul 
+              each c in configuration
+                li #{c.shelf.code} (#{c.shelf.type_code}) - LOC #{c.location} - CHAN #{c.channel_id} - PTL #{c.internal_id}

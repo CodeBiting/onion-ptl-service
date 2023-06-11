@@ -1,0 +1,182 @@
+[
+  {
+    "location": "L000000",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 1,
+    "internal_id": "001",
+    "channel_id": "1",
+    "type": 1,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  },
+  {
+    "location": "L000001",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 2,
+    "internal_id": "002",
+    "channel_id": "1",
+    "type": 1,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  },
+  {
+    "location": "L000002",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 3,
+    "internal_id": "003",
+    "channel_id": "1",
+    "type": 1,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  },
+  {
+    "location": "L000003",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 4,
+    "internal_id": "004",
+    "channel_id": "1",
+    "type": 2,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  },
+  {
+    "location": "L000004",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 5,
+    "internal_id": "005",
+    "channel_id": "1",
+    "type": 7,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  },
+  {
+    "location": "L001000",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 6,
+    "internal_id": "001",
+    "channel_id": "2",
+    "type": 6,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  },
+  {
+    "location": "L001001",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 7,
+    "internal_id": "002",
+    "channel_id": "2",
+    "type": 5,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  },
+  {
+    "location": "L001002",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 8,
+    "internal_id": "003",
+    "channel_id": "2",
+    "type": 5,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  },
+  {
+    "location": "L001003",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 9,
+    "internal_id": "004",
+    "channel_id": "2",
+    "type": 5,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  },
+  {
+    "location": "L001004",
+    "shelf": {
+      "id": 1,
+      "code": "SHELF",
+      "type_id": 1,
+      "type_code": "pick-to-light"
+    },
+    "id": 10,
+    "internal_id": "005",
+    "channel_id": "2",
+    "type": 5,
+    "dpi": {
+      "ip": "192.168.1.222",
+      "port": 16,
+      "id": 1
+    }
+  }
+]

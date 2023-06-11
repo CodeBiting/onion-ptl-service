@@ -1,0 +1,260 @@
+body {
+  padding: 5px 10px 5px 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: black;
+  color: white;
+  text-shadow: 2px 2px 2px #000000;
+}
+
+a {
+  color: #00B7FF;
+}
+
+b {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: bold
+}
+
+b.header {
+  font: 40px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: bold
+}
+
+h1 {
+  font: 40px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h2 {
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#palletsMP {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#palletsMP td, #palletsMP th {
+  border: 0px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#palletsMP tr:nth-child(even){background-color: #555555;}
+
+#palletsMP th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+
+div.info {
+  background-color:#AFAFAF;
+  font: 26px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: black;
+  opacity: 1;
+  padding: 2px 15px 2px 15px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+div.error {
+  background-color:#FF6A4E;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: black;
+  opacity: 1;
+  padding: 2px 15px 2px 15px;
+  text-align: left;
+  border-radius: 15px;
+}
+
+#inkBatchDiv {
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  background-color: black;
+  margin-top: 20px;
+}
+
+.rcorners {
+  border-radius: 15px;
+  border: 2px solid white;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+p, ul, ol, li {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  opacity: 1;
+  padding: 0px 15px 2px 15px;
+}
+
+.layout {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid:
+    "header" auto
+    "main" 1fr
+    "footer" auto
+    / 1fr;
+  gap: 0px;
+}
+
+.header { grid-area: header; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }
+
+
+.layout-fill-space {
+  width: 100%;
+  padding: 5px;
+
+  display: flex;
+  gap: 10px;
+}
+
+.grow1 { 
+  flex-grow: 1;
+}
+/*
+input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+  font: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color : #FFC34F;
+  border-radius: 8px;
+}
+*/
+.longtext {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color : #FFC34F;
+  border-radius: 8px;
+}
+
+.shorttext {
+  width: 8%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color : #FFC34F;
+  border-radius: 8px;
+}
+
+input[type=password] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color : #FFC34F;
+  border-radius: 8px;
+}
+
+input[type=number] {
+  width: 6%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color : #FFC34F; 
+  border-radius: 8px;
+}
+
+input[type=button] {
+  width: 10%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border-radius: 8px;
+}
+
+select {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color : #FFC34F; 
+  border-radius: 8px;
+}
+
+input[type=submit] {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border-radius: 8px;
+}
+
+.delete-input {
+  width: 2%;
+  padding: 12px 20px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border-radius: 8px;
+  background-color : red;
+}
+
+
+.isa_info, .isa_success, .isa_warning, .isa_error {
+  margin: 10px 0px;
+  padding:12px;
+
+}
+.isa_info {
+  color: #00529B;
+  background-color: #BDE5F8;
+  border-radius: 8px;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-shadow: 0px 0px 0px #000000;
+}
+.isa_success {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+  border-radius: 8px;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-shadow: 0px 0px 0px #000000;
+}
+.isa_warning {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  border-radius: 8px;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-shadow: 0px 0px 0px #000000;
+}
+.isa_error {
+  color: #D8000C;
+  background-color: #FFD2D2;
+  border-radius: 8px;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-shadow: 0px 0px 0px #000000;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("../images/pickerfighterbg2.png");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

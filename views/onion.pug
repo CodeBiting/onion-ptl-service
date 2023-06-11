@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  script(src='/javascripts/common.js' charset='utf-8')
+
+  h1= title
+
+  if message 
+    if message.type == 'ok'
+      .isa_success#message(onclick='hide()') #{message.text}
+    if message.type == 'error'
+      .isa_error#message(onclick='hide()') #{message.text}
+  .isa_warning#container(tabindex='0' style='display:none' onclick='hide()')
+
+  section.layout-fill-space
+    .grow1
+      div.rcorners
+        a(href='/') Home
+
+
+  section.layout-fill-space
+    .grow1
+      div.rcorners
+        form(action='/onion' method='post' onsubmit='return formIsOk(this);')
+          div
+            section.layout-fill-space
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='Refresh')
+              .grow1
+                input#submitpalet(name="submit" type='submit' value='Reload Movements')
+
+
+  section.layout-fill-space
+    .grow1
+      div.rcorners
+        p Movements Received from Onion
+        if messagesReceived
+          ol 
+            each m in messagesReceived
+              if m
+                li #{m.id} - #{m.externalId} - #{(m.created_at ? m.created_at.toLocaleString() : '')} - #{(m.updated_at ? m.updated_at.toLocaleString() : '')} - #{(m.sent_at ? m.processed_at.toLocaleString() : '')}
+    .grow1
+      div.rcorners
+        p Movements Pending to Send to Onion or With Error
+        if messagesPendingToSend
+          ol 
+            each m in messagesPendingToSend
+              if m
+                li #{m.id} - #{m.externalId} - #{(m.created_at ? m.created_at.toLocaleString() : '')} - #{(m.updated_at ? m.updated_at.toLocaleString() : '')} - #{(m.sent_at ? m.sent_at.toLocaleString() : '')} - #{m.retries} - #{(m.result ? m.result.message : '')}
+    .grow1
+      div.rcorners
+        p Last Movements Sent to Onion
+        if messagesSent
+          ol 
+            each m in messagesSent
+              if m
+                li #{m.id} - #{m.externalId} - #{(m.created_at ? m.created_at.toLocaleString() : '')} - #{(m.updated_at ? m.updated_at.toLocaleString() : '')} - #{(m.sent_at ? m.sent_at.toLocaleString() : '')} - #{m.retries} - #{(m.result ? m.result.message : '')}
