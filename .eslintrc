@@ -1,8 +1,0 @@
-{
-  "eslint.enable": false, // Deshabilitem eslint, ja que no s'ajusta al nostre estil
-  "extends": "airbnb-base",
-  "env": {
-    "browser": true,
-    "node": true
-  }
-}
