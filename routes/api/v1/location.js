@@ -14,14 +14,14 @@
    limitations under the License.
  */
 
-var express = require('express');
-const constantsPTL = require('../../../api/constantsPTL');
-var router = express.Router();
+const express = require('express');
+// const constantsPTL = require('../../../api/constantsPTL');
+const router = express.Router();
 
-const controlPTL = require(`${global.__base}api/ControlPTL`);
-const logger = require(`${global.__base}api/logger`);
-const ApiResult = require(`${global.__base}api/ApiResult`);
-const ApiError = require(`${global.__base}api/ApiError`);
+const controlPTL = require('../../../api/ControlPTL');
+const logger = require('../../../api/logger');
+const ApiResult = require('../../../api/ApiResult');
+const ApiError = require('../../../api/ApiError');
 
 const HELP_BASE_URL = '/v1/help/error';
 
@@ -56,7 +56,7 @@ const API_NAME = 'location';
  */
 
 /**
- * @swagger 
+ * @swagger
  * /api/v1/location:
  *   get:
  *     summary: Returns all locations
@@ -72,22 +72,22 @@ const API_NAME = 'location';
  *               type: object
  *               $ref: '#/definitions/ApiResult'
  */
-router.get('/', function(req, res, next) {
-  let errors = [];
-  let status = 200;
-  let locations = null;
-  try {
-    locations = controlPTL.ConfiguredPTLs;
-  } catch (ex) {
-    logger.error(`${API_NAME}: [${req.method}] ${req.originalUrl}: ${ex}`);
-    status = 500;
-    errors.push(new ApiError('LOCATION-001', 
-      'Internal server error',
-      `An error occurred while retrieving locations: ${ex.message}`, 
-      `${req.protocol}://${req.get('host')}${HELP_BASE_URL}/LOCATION-001`));
-  }
+router.get('/', function (req, res, next) {
+    const errors = [];
+    let status = 200;
+    let locations = null;
+    try {
+        locations = controlPTL.ConfiguredPTLs;
+    } catch (ex) {
+        logger.error(`${API_NAME}: [${req.method}] ${req.originalUrl}: ${ex}`);
+        status = 500;
+        errors.push(new ApiError('LOCATION-001',
+            'Internal server error',
+            `An error occurred while retrieving locations: ${ex.message}`,
+            `${req.protocol}://${req.get('host')}${HELP_BASE_URL}/LOCATION-001`));
+    }
 
-  res.status(status).json(new ApiResult((status === 200 ? "OK" : "ERROR"), locations, errors));
+    res.status(status).json(new ApiResult((status === 200 ? 'OK' : 'ERROR'), locations, errors));
 });
 
 module.exports = router;

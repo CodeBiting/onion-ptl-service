@@ -664,5 +664,18 @@ describe('ElectrotecDPI', function() {
           
           expect(configuration).deep.to.equal(configurationExpected);
       });
-  });    
+  });
+
+  describe('convertASCIItoHex', function () {
+    it('should parse ok when the data received is correct', function () {
+      let dataToParse = '\x02\x36\x05001\x052\x051,2,V\x03';
+      let dataExpected = '\\x02,\\x36,\\x05,\\x30,\\x30,\\x31,\\x05,\\x32,\\x05,\\x31,\\x2c,\\x32,\\x2c,\\x56,\\x03';
+
+      let dataParsed = electrotecDPI.convertASCIItoHex(dataToParse);
+
+      console.log(dataParsed);
+      
+      expect(dataParsed).to.equal(dataExpected);
+    });
+  });
 });

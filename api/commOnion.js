@@ -16,33 +16,33 @@
 
 module.exports = class commOnion {
     // Crida a getTasks
-    static getOrders() {
+    static getOrders () {
 
     }
 
     // Crida a DoMovement
-    static confirmLine() {
-        
+    static confirmLine () {
+
     }
 
-    static confirmOrder() {
-        
+    static confirmOrder () {
+
     }
 
     // Envia una alarma a Onion
-    static alert() {
+    static alert () {
 
     }
 
-    static getUsers() {
-        
-    }
-
-    static login() {
+    static getUsers () {
 
     }
 
-    static getConfiguration() {
+    static login () {
 
     }
-}
+
+    static getConfiguration () {
+
+    }
+};

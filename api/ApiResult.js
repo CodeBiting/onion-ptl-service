@@ -14,8 +14,8 @@
    limitations under the License.
  */
 
-//const ApiError = require(`../api/ApiError`);
-const ApiError = require(`${global.__base}api/ApiError`);
+// const ApiError = require('../api/ApiError');
+const ApiError = require('./ApiError');
 
 /**
  * @swagger
@@ -32,7 +32,7 @@ const ApiError = require(`${global.__base}api/ApiError`);
  *             description : "array of objects returned"
  *         errors:
  *           type: "array"
- *           items: 
+ *           items:
  *             type : "object"
  *             description : "name of the object"
  *             properties:
@@ -47,23 +47,23 @@ const ApiError = require(`${global.__base}api/ApiError`);
  *       required: ["status","data", "errors"]
  */
 class ApiResult {
-  /**
-   * 
-   * @param {*} status 
-   * @param {*} data 
+    /**
+   *
+   * @param {*} status
+   * @param {*} data
    * @param {*} error : object from class ApiError
    */
-  constructor(status, data, errors) {
-    this.status = status;
-    this.data = data;
-    this.errors = [];
+    constructor (status, data, errors) {
+        this.status = status;
+        this.data = data;
+        this.errors = [];
 
-    if (errors && Array.isArray(errors) ) {
-      for (let i = 0; i < errors.length; i++) {
-        this.errors.push(new ApiError(errors[i].code, errors[i].message, errors[i].detail, errors[i].help));  
-      }           
-    }     
-  }
+        if (errors && Array.isArray(errors)) {
+            for (let i = 0; i < errors.length; i++) {
+                this.errors.push(new ApiError(errors[i].code, errors[i].message, errors[i].detail, errors[i].help));
+            }
+        }
+    }
 }
 
 module.exports = ApiResult;

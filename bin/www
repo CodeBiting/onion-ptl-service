@@ -4,18 +4,18 @@
  * Module dependencies.
  */
 // global variable to use in require
-//global.__base = __dirname + '/';
+// global.__base = __dirname + '/';
 
-var app = require('../app');
-var debug = require('debug')('onion-ptl-service:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('onion-ptl-service:server');
+const http = require('http');
 const logger = require('../api/logger');
 
 // Creem l'objecte de connexió amb els DPI
 const poolMySql = require('../api/poolMySql');
-const DataPTL = require('../api/DataPTL')
-//const constantsPTL = require('../api/constantsPTL');
-var controlPTL = require('../api/ControlPTL');
+const DataPTL = require('../api/DataPTL');
+// const constantsPTL = require('../api/constantsPTL');
+const controlPTL = require('../api/ControlPTL');
 
 /**
  * Get port from environment and store in Express.
@@ -28,7 +28,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -39,94 +39,94 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 // Obtenim la configuració de la BD i la carreguem a l'objecte electrotec
-(async() => {
-  // Creem una configuració per defecte a partir del simulador
-  let configuration = require('../config/simulator.json');
+(async () => {
+    // Creem una configuració per defecte a partir del simulador
+    let configuration = require('../config/simulator.json');
 
-  let configFound = await DataPTL.getConfiguration(poolMySql.getPromise());
-  if (configFound === undefined || configFound === null 
-      || (configFound.error !== undefined && configFound.error !== null)
-      || (configFound.configuration && configFound.configuration.length === 0)) {
-    logger.error(`www : No configuration found or error reading configuration from DB ${configFound.error}`);
-  } else {
+    const configFound = await DataPTL.getConfiguration(poolMySql.getPromise());
+    if (configFound === undefined || configFound === null ||
+      (configFound.error !== undefined && configFound.error !== null) ||
+      (configFound.configuration && configFound.configuration.length === 0)) {
+        logger.error(`www : No configuration found or error reading configuration from DB ${configFound.error}`);
+    } else {
     // Sobreescribim la configuració per defecte amb la de la BD
-    configuration = configFound.configuration;
-  }
+        configuration = configFound.configuration;
+    }
 
-  controlPTL.reloadConfigurationAndConnect(configuration);
+    controlPTL.reloadConfigurationAndConnect(configuration);
 
-  //await controlPTL.reloadMovements();
-}) ();
+    // await controlPTL.reloadMovements();
+})();
 
 /**
  * Normalize a port into a number, string, or false.
  */
 
-function normalizePort(val) {
-  const portNormalized = parseInt(val, 10);
+function normalizePort (val) {
+    const portNormalized = parseInt(val, 10);
 
-  if (Number.isNaN(portNormalized)) {
+    if (Number.isNaN(portNormalized)) {
     // named pipe
-    return val;
-  }
+        return val;
+    }
 
-  if (portNormalized >= 0) {
+    if (portNormalized >= 0) {
     // port number
-    return portNormalized;
-  }
+        return portNormalized;
+    }
 
-  return false;
+    return false;
 }
 
 /**
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
-  if (error && error.syscall !== 'listen') {
-    throw error;
-  }
+function onError (error) {
+    if (error && error.syscall !== 'listen') {
+        throw error;
+    }
 
-  const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+    const bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      //console.error(bind + ' requires elevated privileges');
-      logger.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      //console.error(bind + ' is already in use');
-      logger.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      logger.error(bind + ' default');
-      throw error;
-  }
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            // console.error(bind + ' requires elevated privileges');
+            logger.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            // console.error(bind + ' is already in use');
+            logger.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            logger.error(bind + ' default');
+            throw error;
+    }
 }
 
 /**
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
-  const addr = server.address();
-  const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
-  logger.info('Listening on ' + bind);
+function onListening () {
+    const addr = server.address();
+    const bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+    logger.info('Listening on ' + bind);
 }
 
-function onCloseGracefully() {
-  logger.info('SIGTERM signal received.');
-  logger.info('Closing http server.');
+function onCloseGracefully () {
+    logger.info('SIGTERM signal received.');
+    logger.info('Closing http server.');
 
-  /*
+    /*
   server.close(() => {
     logger.info('Http server closed.');
     // Close ptl connection
@@ -139,7 +139,7 @@ function onCloseGracefully() {
     process.exit(0);
   });
   */
-  process.exit(0);
+    process.exit(0);
 }
 
 /**

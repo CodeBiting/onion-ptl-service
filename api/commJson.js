@@ -16,22 +16,22 @@
 
 module.exports = class commJson {
     // Obté les órdres de fitxers
-    static getOrders() {
+    static getOrders () {
 
     }
 
     // Confirma una línia de la ordre (no fares)
-    static confirmLine() {
-        
+    static confirmLine () {
+
     }
 
     // Confirma tota una ordre, escriu el fitxer de resposta
-    static confirmOrder() {
+    static confirmOrder () {
 
     }
 
     // Exporta un fitxer d'alarmes
-    static alert() {
+    static alert () {
 
     }
-}
+};

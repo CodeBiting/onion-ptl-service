@@ -248,6 +248,10 @@ Node status table
 - Implementation API communications with Onion
 - Movement management API implementation
 
+### V 0.2.0
+
+- eslint control enabled
+
 ## License
 
 Copyright (c) 2023 Code Biting S.L. Licensed under the Apache 2.0 License.

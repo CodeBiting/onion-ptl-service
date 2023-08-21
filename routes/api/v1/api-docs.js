@@ -14,7 +14,7 @@
    limitations under the License.
  */
 
-"use strict";
+'use strict';
 
 const express = require('express');
 const app = express();
@@ -23,36 +23,36 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
 
 const swaggerOptions = {
-  swaggerDefinition: {
-    openapi: '3.0.0',
-    info: {
-      version: '1.0.0',
-      title: 'ONION DEVICE CLIENT PTL',
-      description: "Service to control PTL devices for Onion WMS",
-      //termsOfService: "http://swagger.io/terms/",
-      contact: {
-        name: "API Support",
-        url: "https://www.codebiting.com/support",
-        //email: "support@swagger.io"
-      },
-      license: {
-        name: "MIT",
-        url: "https://opensource.org/license/mit/"
-      },
-      servers: ['http://localhost:3000']
-    }
-  },
-  //basePath: `${__base}`,
-  // APIs to document
-  apis: [
-    './routes/api/v1/help.js',
-    './routes/api/v1/movement.js',
-    './routes/api/v1/location.js',
-    './api/ApiResult.js',
-  ]
-}
+    swaggerDefinition: {
+        openapi: '3.0.0',
+        info: {
+            version: '1.0.0',
+            title: 'ONION DEVICE CLIENT PTL',
+            description: 'Service to control PTL devices for Onion WMS',
+            // termsOfService: "http://swagger.io/terms/",
+            contact: {
+                name: 'API Support',
+                url: 'https://www.codebiting.com/support'
+                // email: "support@swagger.io"
+            },
+            license: {
+                name: 'MIT',
+                url: 'https://opensource.org/license/mit/'
+            },
+            servers: ['http://localhost:3000']
+        }
+    },
+    // basePath: `${__base}`,
+    // APIs to document
+    apis: [
+        './routes/api/v1/help.js',
+        './routes/api/v1/movement.js',
+        './routes/api/v1/location.js',
+        './api/ApiResult.js'
+    ]
+};
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.use('/', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 module.exports = app;

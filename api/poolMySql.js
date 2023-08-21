@@ -24,9 +24,9 @@
  https://www.terlici.com/2015/08/13/mysql-node-express.html
  */
 const config = require('../config/config');
-//const logger = require('../api/logger');
-var mysql = require('mysql2');
-//var async = require('async');
+// const logger = require('../api/logger');
+const mysql = require('mysql2');
+// var async = require('async');
 
 /**
  * Objecte Singleton per comunicar via TCP/IP amb els dispositius DPI d'Electrotec
@@ -37,20 +37,19 @@ var mysql = require('mysql2');
  * Gestiona les connexions via TCP/IP amb els DPI de la configuració
  * Reconnecta amb el DPI quan toca
  * Envia missatges d'alive periòdicament
- * 
+ *
  * Per fer-lo servir, importar el fitxer i ja es pot cridar a les funcions
  *   import electrotec from './ControlPTL.js';
  *   electrotec.send();
  */
 
-class poolMySql {
-    
+class PoolMySql {
     state = {
         pool: null,
         promisePool: null
     };
 
-    constructor(db) {
+    constructor (db) {
         this.state.pool = mysql.createPool({
             host: db.host,
             port: db.port,
@@ -59,28 +58,28 @@ class poolMySql {
             database: db.database,
             connectionLimit: db.connectionLimit
         });
-    
+
         this.state.promisePool = this.state.pool.promise();
     }
-  
-    get = function() {
+
+    get = function () {
         return this.state.pool;
     };
-    
-    getPromise = function() {
+
+    getPromise = function () {
         return this.state.promisePool;
     };
 }
-  
-const singletonInstance = new poolMySql(config.db);
-  
-// The Object.freeze() method prevents modification to properties and values 
-// of an object. So applying Object.freeze() to singletonInstance means you 
-// will not be able to change any of its properties or values later on in your 
-// code.
-//Object.freeze(singletonInstance);
 
-// The important part is the last line where we don’t export the class but we 
-// export the instance of the class instead. Node.JS will cache and reuse the 
+const singletonInstance = new PoolMySql(config.db);
+
+// The Object.freeze() method prevents modification to properties and values
+// of an object. So applying Object.freeze() to singletonInstance means you
+// will not be able to change any of its properties or values later on in your
+// code.
+// Object.freeze(singletonInstance);
+
+// The important part is the last line where we don’t export the class but we
+// export the instance of the class instead. Node.JS will cache and reuse the
 // same object each time it’s required.
 module.exports = singletonInstance;

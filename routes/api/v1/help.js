@@ -14,13 +14,13 @@
    limitations under the License.
  */
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-const logger = require(`${__base}api/logger`);
-const ApiResult = require(`${__base}api/ApiResult`);
-const ApiError = require(`${__base}api/ApiError`);
-const helpData = require(`${__base}/api/v1/help.json`);
+const logger = require('../../../api/logger');
+const ApiResult = require('../../../api/ApiResult');
+const ApiError = require('../../../api/ApiError');
+const helpData = require('../../../api/v1/help.json');
 
 // Constants to structure logs
 const API_NAME = 'help';
@@ -42,7 +42,7 @@ const API_NAME = 'help';
  */
 
 /**
- * @swagger 
+ * @swagger
  * /api/v1/help/error:
  *   get:
  *     summary: Returns all error helps
@@ -58,12 +58,12 @@ const API_NAME = 'help';
  *               type: object
  *               $ref: '#/definitions/ApiResult'
  */
-router.get('/error/', function(req, res, next) {
-  res.status(200).json(new ApiResult("OK", helpData, []));
+router.get('/error/', function (req, res, next) {
+    res.status(200).json(new ApiResult('OK', helpData, []));
 });
 
 /**
- * @swagger 
+ * @swagger
  * /api/v1/help/error/code:
  *   get:
  *     summary: Returns one error helps
@@ -86,32 +86,31 @@ router.get('/error/', function(req, res, next) {
  *               type: object
  *               $ref: '#/definitions/ApiResult'
  */
-router.get('/error/:code', function(req, res, next) {
-  let errors = [];
-  let status = 200;
-  let helpFound = null;
-  
-  try {
-    helpFound = helpData.find(h => h.code === req.params.code);
-    if (helpFound === undefined) {
-      logger.error(`${API_NAME}: [${req.method}] ${req.originalUrl}: Help not found`)
-      status = 404;
-      errors.push(new ApiError('HELP-001', 
-        'Incorrect code, this code does not exist', 
-        'Ensure that the code included in the request are correct', 
-        ''));
+router.get('/error/:code', function (req, res, next) {
+    const errors = [];
+    let status = 200;
+    let helpFound = null;
+
+    try {
+        helpFound = helpData.find(h => h.code === req.params.code);
+        if (helpFound === undefined) {
+            logger.error(`${API_NAME}: [${req.method}] ${req.originalUrl}: Help not found`);
+            status = 404;
+            errors.push(new ApiError('HELP-001',
+                'Incorrect code, this code does not exist',
+                'Ensure that the code included in the request are correct',
+                ''));
+        }
+    } catch (ex) {
+        logger.error(`${API_NAME}: [${req.method}] ${req.originalUrl}: ${ex}`);
+        status = 500;
+        errors.push(new ApiError('HELP-002',
+            'Internal server error',
+            'Server has an internal error with the request',
+            ''));
     }
-  } catch (ex) {
-    logger.error(`${API_NAME}: [${req.method}] ${req.originalUrl}: ${ex}`)
-    status = 500;
-    errors.push(new ApiError('HELP-002', 
-      'Internal server error',
-      'Server has an internal error with the request', 
-      ''));
-  }
 
-  res.status(status).json(new ApiResult((status === 200 ? "OK" : "ERROR"), helpFound, errors));
+    res.status(status).json(new ApiResult((status === 200 ? 'OK' : 'ERROR'), helpFound, errors));
 });
-
 
 module.exports = router;

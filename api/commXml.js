@@ -15,20 +15,20 @@
  */
 
 module.exports = class commXml {
-    static getOrders() {
+    static getOrders () {
 
-    } 
+    }
 
-    static confirmLine() {
-        
-    } 
+    static confirmLine () {
 
-    static confirmOrder() {
-        
+    }
+
+    static confirmOrder () {
+
     }
 
     // Exporta un fitxer d'alarmes
-    static alert() {
+    static alert () {
 
     }
-}
+};
