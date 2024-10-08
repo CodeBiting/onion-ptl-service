@@ -365,7 +365,8 @@ async function sendMovToOnion (onionConfig, movement, state) {
         client: onionConfig.client,
         taskMovementId: movement.externalId,
         quantity: movement.quantity,
-        userId: onionConfig.userId
+        userId: onionConfig.userId, // PTL service user ID, the movement userId is inside movement JSON
+        movement
     };
     const config = {
         headers: {

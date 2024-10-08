@@ -252,6 +252,10 @@ Node status table
 
 - eslint control enabled
 
+### V 0.2.1
+
+- return full movement object to Onion in pick2lightonion mode
+
 ## License
 
 Copyright (c) 2023 Code Biting S.L. Licensed under the Apache 2.0 License.
